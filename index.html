@@ -878,7 +878,7 @@ function initBA(containerId, beforeId, handleId) {
   document.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
   handle.addEventListener('touchstart', () => dragging = true);
   document.addEventListener('touchend', () => dragging = false);
-  document.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); });
+  document.addEventListener('touchmove', e => { if (dragging) { e.preventDefault(); setPosition(e.touches[0].clientX); } }, { passive: false });
 }
 
 initBA('ba1', 'ba1-before', 'ba1-handle');
